@@ -58,7 +58,6 @@ namespace ChatClient
                 Stream stream = ClientInstance.GetStream();
                 byte[] bytes = Encoding.UTF8.GetBytes(msg);
                 stream.Write(bytes, 0, bytes.Length);
-                stream.Close();
             }
             catch (Exception e)
             {
@@ -77,7 +76,6 @@ namespace ChatClient
 
                 // Read input
                 int n = stream.Read(buffer, 0, buffer.Length);
-                stream.Close();
                 return Encoding.UTF8.GetString(buffer, 0, n);
             }
             catch (Exception e)

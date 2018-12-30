@@ -43,7 +43,7 @@ namespace ChatClient
                     // Show message box with error details if connecting fails
                     MessageBoxButtons buttons = MessageBoxButtons.OK;
                     MessageBox.Show(ex.Message, "Error", buttons);
-                    Close();
+                    CloseForm();
                 }
             }
         }
@@ -64,7 +64,7 @@ namespace ChatClient
                 // Show message box with error details if connecting fails
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 MessageBox.Show(ex.Message, "Error", buttons);
-                Close();
+                CloseForm();
             }
         }
 
@@ -75,7 +75,12 @@ namespace ChatClient
                 // Constantly receive messages from client and display in text box
                 while (true)
                 {
-                    AppendTextBox(">> " + client.Receive() + Environment.NewLine);
+                    // When a non empty message was received display it
+                    string msg = client.Receive();
+                    if (msg != string.Empty)
+                    {
+                        AppendTextBox(">> " + msg + Environment.NewLine);
+                    }
                 }
             }
             catch (Exception ex)
@@ -83,7 +88,7 @@ namespace ChatClient
                 // Show message box with error details if connecting fails
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 MessageBox.Show(ex.Message, "Error", buttons);
-                Close();
+                CloseForm();
             }
         }
 

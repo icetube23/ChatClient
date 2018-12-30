@@ -89,12 +89,24 @@ namespace ChatClient
 
         private void AppendTextBox(string msg)
         {
+            // Allow access from other threads
             if (InvokeRequired)
             {
-                Invoke(new Action<string>(AppendTextBox), new object[] { msg });
+                BeginInvoke(new Action<string>(AppendTextBox), new object[] { msg });
                 return;
             }
             textBox3.Text += msg;
+        }
+
+        private void CloseForm()
+        {
+            // Allow other threads to close the form
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(CloseForm));
+                return;
+            }
+            Close();
         }
     }
 }

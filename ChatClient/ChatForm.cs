@@ -113,5 +113,11 @@ namespace ChatClient
             }
             Close();
         }
+
+        private void CleanUp(object sender, FormClosingEventArgs e)
+        {
+            // Properly sever the connection to the server before closing the form
+            client.Disconnect();
+        }
     }
 }

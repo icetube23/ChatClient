@@ -111,6 +111,7 @@
             this.MaximizeBox = false;
             this.Name = "ChatForm";
             this.Text = "Chat Client";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CleanUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 

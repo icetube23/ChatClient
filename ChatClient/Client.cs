@@ -42,7 +42,7 @@ namespace ChatClient
             }
             catch (Exception e)
             {
-                ClientInstance.Close();
+                Disconnect();
                 throw e;
             }
         }
@@ -61,7 +61,7 @@ namespace ChatClient
             }
             catch (Exception e)
             {
-                ClientInstance.Close();
+                Disconnect();
                 throw e;
             }
         }
@@ -80,9 +80,16 @@ namespace ChatClient
             }
             catch (Exception e)
             {
-                ClientInstance.Close();
+                Disconnect();
                 throw e;
             }
+        }
+
+        public void Disconnect()
+        {
+            // Properly close connection to server
+            Send("closing connection");
+            ClientInstance.Close();
         }
     }
 }

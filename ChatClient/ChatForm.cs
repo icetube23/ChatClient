@@ -119,5 +119,14 @@ namespace ChatClient
             // Properly sever the connection to the server before closing the form
             client.Disconnect();
         }
+
+        private void EnterToSend(object sender, KeyEventArgs e)
+        {
+            // If enter is pressed send messages
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+            {
+                Button2_Click(sender, null);
+            }
+        }
     }
 }
